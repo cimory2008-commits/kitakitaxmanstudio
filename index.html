@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Where We Disappear</title>
+<style>
+:root{--bg:#000;--ink:#f2f2f4;--mut:#8d8d94;--chrome:linear-gradient(135deg,#fff,#6b6b70 28%,#e9e9ee 50%,#58585d 72%,#fff);--pt:env(safe-area-inset-top,0px);--pb:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+html{scroll-padding-top:90px}
+body{background:#000 radial-gradient(ellipse at 50% 0,#1d1d21 0,#000 60%);color:var(--ink);font:15px/1.4 system-ui,"Segoe UI",Roboto,sans-serif;min-height:100vh;padding-top:var(--pt);padding-bottom:var(--pb)}
+body.calm .bolt{display:none}
+.bolt{position:fixed;top:0;height:100%;width:140px;opacity:.5;pointer-events:none;z-index:0;animation:fl 5s infinite}
+.bolt.r{right:0;animation-delay:2s}.bolt.l{left:0}
+.bolt path{fill:none;stroke:#fff;stroke-width:1.4;filter:drop-shadow(0 0 4px #fff)}
+@keyframes fl{0%,88%,100%{opacity:.12}90%{opacity:.8}92%{opacity:.2}94%{opacity:.7}}
+header{position:sticky;top:var(--pt);z-index:20;margin:10px auto 0;max-width:1180px;padding:0 12px}
+.nav{display:flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(10,10,12,.82);backdrop-filter:blur(14px)}
+.nav img.logo{height:46px;width:auto;margin-right:auto;cursor:pointer}
+.nav a{color:var(--mut);text-decoration:none;padding:12px 16px;position:relative;font-weight:600;transition:.25s}
+.nav a:hover{color:#fff}.nav a.on{color:#fff}
+.nav a.on::after{content:"";position:absolute;left:12px;right:12px;bottom:3px;height:2px;background:#fff;box-shadow:0 0 8px #fff;animation:gr .3s}
+@keyframes gr{from{transform:scaleX(0)}}
+.burger{display:none;background:none;border:0;color:#fff;font-size:26px;cursor:pointer}
+main{position:relative;z-index:1;max-width:1180px;margin:18px auto 40px;padding:0 12px}
+.card{position:relative;padding:20px;background:linear-gradient(145deg,#09090b,#16161a);clip-path:polygon(16px 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%,0 16px);transition:transform .3s,filter .3s}
+.card::before{content:"";position:absolute;inset:0;padding:2px;background:var(--chrome);background-size:220% 220%;animation:sh 6s linear infinite;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+@keyframes sh{to{background-position:220% 220%}}
+.card.hv:hover{transform:translateY(-3px);filter:brightness(1.12)}
+.page{display:none;animation:in .35s}.page.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(8px)}}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:1fr 1fr}.gm{grid-template-columns:1.6fr 1fr}
+.prof{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.av{border-radius:50%;background:#1b1b1f;border:3px solid #d8d8dd;box-shadow:0 0 22px rgba(255,255,255,.35);display:grid;place-items:center;overflow:hidden;position:relative;flex:none;font-weight:800;color:#bbb}
+.av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pi h2{font-size:30px}.pi .u{color:#cfcfd4;margin:2px 0 8px}.pi dl{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;color:var(--mut)}.pi dd{color:#fff}
+.rankimg{height:54px;max-width:100%;object-fit:contain;display:block;margin-top:10px}
+.big{margin-left:auto;height:130px;max-width:100%;object-fit:contain}
+.stat{display:flex;align-items:center;gap:20px}
+.stat img{width:42%;max-height:70px;object-fit:contain}
+.stat .v{border-left:1px solid #444;padding-left:20px}.stat small{color:#ddd;font-weight:700}.stat b{display:block;font-size:44px;line-height:1.1}.stat b i{font-size:16px;font-style:normal;margin-left:6px}
+h3{font-size:20px;margin-bottom:12px}
+.tabs{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.tabs button,.btn{background:#101013;color:#ddd;border:1px solid #4a4a50;padding:10px 16px;cursor:pointer;font:600 14px inherit;transition:.25s;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%)}
+.tabs button.on,.btn.pri{background:#f2f2f4;color:#000}.tabs button:hover,.btn:hover{filter:brightness(1.3)}
+.btn{clip-path:none;border-radius:6px;display:block;width:100%;margin-top:8px;text-align:left}
+input[type=text]{background:#0e0e11;border:1px solid #4a4a50;color:#fff;padding:10px 12px;width:100%;border-radius:6px;font:inherit;margin-bottom:10px}
+table{width:100%;border-collapse:collapse}th{color:var(--mut);font-weight:600;text-align:left;padding:8px;font-size:13px}
+td{padding:9px 8px;background:#0c0c0f;border-top:3px solid #060608;vertical-align:middle}
+td.pl{display:flex;align-items:center;gap:10px}.rk{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:#222}
+.r1 .rk{background:linear-gradient(135deg,#ffe28a,#b8860b);color:#000}.r2 .rk{background:linear-gradient(135deg,#fff,#8c8c92);color:#000}.r3 .rk{background:linear-gradient(135deg,#e7a46a,#8a4b1d);color:#000}
+tr.r1 td{background:#17140a}tr.me td{outline:1px solid #fff}
+.sm{height:26px;max-width:80px;object-fit:contain}
+.pg{display:flex;gap:8px;align-items:center;justify-content:flex-end;margin-top:10px;color:var(--mut)}
+.msg{padding:14px;color:var(--mut);text-align:center}.err{color:#ff8d8d}.badge{display:inline-block;font-size:11px;letter-spacing:.1em;border:1px solid #666;padding:2px 8px;margin-left:8px;color:#cfcfd4}
+.sk{height:40px;margin:6px 0;background:linear-gradient(90deg,#111,#222,#111);background-size:200%;animation:sk 1.2s infinite}@keyframes sk{to{background-position:-200%}}
+.code{font:800 42px monospace;letter-spacing:.3em;text-align:center;padding:14px;background:#0e0e11;border:1px dashed #888;margin:10px 0}
+footer{position:relative;z-index:1;text-align:center;color:var(--mut);letter-spacing:.3em;font-size:12px;padding:20px}
+@media(max-width:860px){.g2,.gm{grid-template-columns:1fr}.big{display:none}.burger{display:block}
+.nav{flex-wrap:wrap}.nav .links{display:none;width:100%;flex-direction:column}.nav.open .links{display:flex}.nav a{padding:12px}.stat b{font-size:34px}th:nth-child(3),td:nth-child(3){display:none}}
+.links{display:flex;gap:4px}
+</style></head><body>
+<svg class="bolt l" viewBox="0 0 140 800" preserveAspectRatio="none"><path d="M10 0 L50 140 L20 150 L90 330 L55 340 L120 560 L80 570 L130 800"/></svg>
+<svg class="bolt r" viewBox="0 0 140 800" preserveAspectRatio="none"><path d="M130 0 L90 120 L120 130 L50 320 L85 330 L20 540 L60 550 L10 800"/></svg>
+<header><div class="nav card" id="nav"><img class="logo" src="assets/l1.webp" alt="Where We Disappear" onclick="go('home')">
+<button class="burger" onclick="nav.classList.toggle('open')" aria-label="Menu">☰</button>
+<div class="links"><a href="#home" data-p="home">Home</a><a href="#profile" data-p="profile">Profile</a><a href="#leaderboard" data-p="leaderboard">Leaderboard</a><a href="#settings" data-p="settings">Settings</a></div></div></header>
+<main id="app"></main>
+<footer>WHERE WE DISAPPEAR</footer>
+<script>
+const IMG={l1:"assets/l1.webp",l2:"assets/l2.webp",l3:"assets/l3.webp"};
+const RANKS=[{id:1,name:"THE NOVICE",min:0,max:2,icon:"assets/r1.webp"},{id:2,name:"THE AMATEUR",min:3,max:4,icon:"assets/r2.webp"},{id:3,name:"THE REGULAR",min:5,max:7,icon:"assets/r3.webp"},{id:4,name:"THE EXPEDITIONIST",min:8,max:1e9,icon:"assets/r4.webp"}];
+const rankOf=s=>RANKS.find(r=>s>=r.min&&s<=r.max)||RANKS[0];
+const DEMO=[["LimonuRBX","LimonuRBX",3,7200,1234567890],["MankkSeven","Mankk",8,5400,2234567],["VantySix","VantySix",5,4200,3234567],["NightWalker","Night",1,3900,4234567],["ChromeKid","Chrome",0,3300,5234567],["AshVoid","Ash",12,3000,6234567],["Hollow_X","Hollow",2,2400,7234567],["Frostbyte","Frost",4,1800,8234567],["Lumen","Lumen",6,1500,9234567],["Echo9","Echo",0,900,1034567],["Raven","Raven",9,600,1134567],["Zed","Zed",1,300,1234568]].map(a=>({u:a[0],d:a[1],s:a[2],t:a[3],id:a[4]}));
+const $=s=>document.querySelector(s),esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt=t=>t>=3600?Math.floor(t/3600)+"h "+Math.floor(t%3600/60)+"m":Math.max(0,Math.floor(t/60))+"m";
+const fmtBig=t=>t>=3600?[Math.floor(t/3600),"Hour"]:[Math.floor(t/60),"Min"];
+const S={mode:"demo",me:null,tab:"playtime",page:1,q:"",size:5};
+const av=(p,n)=>`<div class="av" style="width:${n}px;height:${n}px;font-size:${n/2.4}px">${esc((p.d||p.u||"?")[0].toUpperCase())}${p.av?`<img src="${esc(p.av)}" alt="" onerror="this.remove()">`:""}</div>`;
+async function jget(u){const c=new AbortController();setTimeout(()=>c.abort(),4000);const r=await fetch(u,{credentials:"same-origin",signal:c.signal});if(!r.ok)throw r.status;return r.json()}
+async function loadMe(){try{const j=await jget("/api/auth/me");S.mode="live";S.me={u:j.username,d:j.displayName,id:j.robloxUserId,av:j.avatarUrl,s:j.totalSummit,t:j.totalPlaytime,sp:j.summitPosition,tp:j.playtimePosition}}catch{S.mode="demo";const m=DEMO[0];S.me={...m,sp:rk("summit",m),tp:rk("playtime",m)}}}
+function rk(type,p){const k=type=="summit"?"s":"t";return DEMO.filter(x=>x[k]>p[k]).length+1}
+async function lb(){const type=S.tab;if(S.mode=="live"){const j=await jget(`/api/leaderboard?type=${type}&page=${S.page}&q=${encodeURIComponent(S.q)}`);return{total:j.total,rows:j.rows.map(r=>({rank:r.rank,u:r.username,d:r.displayName,av:r.avatarUrl,s:r.totalSummit,t:r.totalPlaytime,id:r.robloxUserId}))}}
+const k=type=="summit"?"s":"t",f=DEMO.filter(p=>(p.u+p.d).toLowerCase().includes(S.q.toLowerCase())).map(p=>({...p,rank:rk(type,p)})).sort((a,b)=>a.rank-b.rank);return{total:f.length,rows:f.slice((S.page-1)*S.size,S.page*S.size)}}
+function stats(){const m=S.me,[tv,tu]=fmtBig(m.t);return`<div class="grid g2"><div class="card stat hv"><img src="${IMG.l3}" alt="KITAKITA STUDIO"><div class="v"><small>Total Summit</small><b>${m.s}</b></div></div><div class="card stat hv"><img src="${IMG.l2}" alt="MAN"><div class="v"><small>Total Playtime</small><b>${tv}<i>${tu}</i></b></div></div></div>`}
+function profCard(big){const m=S.me,r=rankOf(m.s);return`<div class="card"><div class="prof">${av(m,big?170:140)}<div class="pi"><h2>${esc(m.d)}</h2><div class="u">@${esc(m.u)}</div><dl><dt>User ID</dt><dd>${esc(m.id)}</dd>${big?`<dt>Summit Rank</dt><dd>#${m.sp}</dd><dt>Playtime Rank</dt><dd>#${m.tp}</dd>`:""}</dl><img class="rankimg" src="${r.icon}" alt="${r.name}"></div><img class="big" src="${IMG.l1}" alt=""></div></div>`}
+function lbBox(full){return`<div class="card"><h3>Leaderboard${S.mode=="demo"?'<span class="badge">DEMO DATA</span>':""}</h3><div class="tabs"><button data-t="playtime" class="${S.tab=="playtime"?"on":""}">Playtime Leaderboard</button><button data-t="summit" class="${S.tab=="summit"?"on":""}">Summit Leaderboard</button></div><input type="text" id="q" placeholder="Cari player…" value="${esc(S.q)}"><div id="lbbody"><div class="sk"></div><div class="sk"></div><div class="sk"></div></div></div>`}
+async function fillLb(){const b=$("#lbbody");if(!b)return;try{const{total,rows}=await lb();if(!rows.length){b.innerHTML='<div class="msg">Belum ada data leaderboard.</div>';return}
+const pages=Math.max(1,Math.ceil(total/S.size)),isS=S.tab=="summit";
+b.innerHTML=`<table><tr><th>#</th><th>Player</th><th>Username</th><th>Rank</th><th>${isS?"Summit":"Playtime"}</th></tr>${rows.map(r=>`<tr class="r${r.rank<=3?r.rank:""} ${r.u==S.me.u?"me":""}"><td><span class="rk">${r.rank}</span></td><td class="pl">${av(r,32)}${esc(r.d)}</td><td>@${esc(r.u)}</td><td><img class="sm" src="${rankOf(r.s).icon}" alt=""></td><td><b>${isS?r.s:fmt(r.t)}</b></td></tr>`).join("")}</table><div class="pg"><button class="btn" style="width:auto;margin:0" data-pg="-1">‹</button>${S.page}/${pages}<button class="btn" style="width:auto;margin:0" data-pg="1" data-max="${pages}">›</button></div>`}catch{b.innerHTML='<div class="msg err">Gagal memuat leaderboard. Coba lagi.</div>'}}
+const pages={
+home:()=>`<div class="grid">${profCard()}${stats()}<div class="grid gm">${lbBox()}<div class="card"><h3>Quick Access</h3><button class="btn" data-a="refresh">⟳ Refresh Data</button><button class="btn" onclick="go('settings')">⚙ Settings</button><button class="btn" onclick="go('profile')">☺ Profile</button></div></div></div>`,
+profile:()=>`<div class="grid">${profCard(1)}${stats()}</div>`,
+leaderboard:()=>lbBox(),
+settings:()=>`<div class="grid g2"><div class="card"><h3>Account</h3><p>Mode data: <b>${S.mode=="live"?"Live (terhubung database)":"Demo"}</b></p><p>Username: @${esc(S.me.u)}</p><p>User ID: ${esc(S.me.id)}</p><button class="btn" data-a="refresh">⟳ Refresh Data</button><button class="btn" data-a="logout">⏻ Logout</button></div><div class="card"><h3>Tampilan</h3><button class="btn" data-a="calm">${document.body.classList.contains("calm")?"Nyalakan":"Matikan"} efek kilat</button><h3 style="margin-top:18px">Login</h3><button class="btn pri" onclick="go('login')">Login dengan Kode Game</button></div></div>`,
+login:()=>`<div class="card" style="max-width:520px;margin:0 auto"><h3>Login Roblox</h3><p style="color:var(--mut);margin-bottom:10px">Masukkan <b>Roblox Username</b> (bukan Displayname). Kamu akan mendapat kode untuk diketik di dalam game.</p><input type="text" id="lu" placeholder="Roblox Username" autocomplete="username"><button class="btn pri" id="lgo" style="text-align:center">Dapatkan Kode</button><div id="lres"></div></div>`};
+function go(p){location.hash=p;nav.classList.remove("open")}
+async function render(){const p=(location.hash||"#home").slice(1);const k=pages[p]?p:"home";document.querySelectorAll(".nav a").forEach(a=>a.classList.toggle("on",a.dataset.p==k));
+if(!S.me)await loadMe();$("#app").innerHTML=`<div class="page on">${pages[k]()}</div>`;fillLb();if(k=="login")bindLogin()}
+function bindLogin(){$("#lgo").onclick=async()=>{const u=$("#lu").value.trim(),o=$("#lres");o.innerHTML='<div class="sk"></div>';try{const r=await fetch("/api/auth/start",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({username:u})});const j=await r.json();if(!r.ok)throw j.error||"Gagal";o.innerHTML=`<p>Akun ditemukan: <b>${esc(j.user.displayName)}</b> (@${esc(j.user.username)})</p><div class="code">${esc(j.code)}</div><p class="msg">Masuk ke game → tombol <b>Web Login</b> → ketik kode. Menunggu verifikasi…</p>`;const t=setInterval(async()=>{try{const s=await jget("/api/auth/status");if(s.status=="verified"){clearInterval(t);S.me=null;go("home");render()}else if(s.status!="pending"){clearInterval(t);o.innerHTML='<div class="msg err">Kode kedaluwarsa. Coba lagi.</div>'}}catch{}},3000)}catch(e){o.innerHTML=`<div class="msg err">${esc(typeof e=="string"?e:"Backend belum tersambung (mode demo tidak bisa login).")}</div>`}}}
+document.addEventListener("click",async e=>{const t=e.target.closest("[data-t],[data-pg],[data-a]");if(!t)return;
+if(t.dataset.t){S.tab=t.dataset.t;S.page=1;render()}
+else if(t.dataset.pg){const n=S.page+ +t.dataset.pg;if(n>=1&&n<=(+t.dataset.max||99)){S.page=n;fillLb()}}
+else if(t.dataset.a=="refresh"){S.me=null;render()}
+else if(t.dataset.a=="calm"){document.body.classList.toggle("calm");try{localStorage.setItem("calm",document.body.classList.contains("calm")?1:0)}catch{}render()}
+else if(t.dataset.a=="logout"){try{await fetch("/api/auth/logout",{method:"POST"})}catch{}S.me=null;go("home");render()}});
+document.addEventListener("input",e=>{if(e.target.id=="q"){clearTimeout(window._qt);window._qt=setTimeout(()=>{S.q=e.target.value;S.page=1;fillLb()},300)}});
+try{if(localStorage.getItem("calm")=="1")document.body.classList.add("calm")}catch{}
+const nav=$("#nav");addEventListener("hashchange",render);render();
+setInterval(()=>{if(document.visibilityState=="visible"&&$("#lbbody"))fillLb()},30000);
+</script></body></html>
